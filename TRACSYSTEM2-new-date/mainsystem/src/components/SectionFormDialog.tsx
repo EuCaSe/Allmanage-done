@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 interface Section {
@@ -66,23 +65,16 @@ export function SectionFormDialog({ section, onSave, onClose }: SectionFormDialo
           />
         </div>
 
-        {/* Type */}
+        {/* Type as Textbox */}
         <div className="space-y-2">
           <Label htmlFor="type" className="font-bold text-black">Type</Label>
-          <Select
+          <Input
+            id="type"
             value={formData.type}
-            onValueChange={(value) => setFormData({ ...formData, type: value })}
+            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
             required
-          >
-            <SelectTrigger className={outlineClass}>
-              <SelectValue placeholder="Select type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Regular">Regular</SelectItem>
-              <SelectItem value="Special">Special</SelectItem>
-              <SelectItem value="Elective">Elective</SelectItem>
-            </SelectContent>
-          </Select>
+            className={outlineClass}
+          />
         </div>
 
         {/* Buttons */}
